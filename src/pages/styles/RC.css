@@ -1,0 +1,7 @@
+.reportImage {
+    position: relative;
+}
+.report-canvas {
+    position:absolute;
+    pointer-events: none;
+}

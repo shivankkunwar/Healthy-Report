@@ -1,0 +1,9 @@
+/*  */
+
+.image-map {
+    position: relative;
+}
+.canvas {
+    position:absolute;
+    pointer-events: none;
+}
