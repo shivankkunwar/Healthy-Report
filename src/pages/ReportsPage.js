@@ -1,107 +1,35 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
-
+import { Link , useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 const ReportsPage = () => {
+  const navigate= useNavigate();
   const [reports, setReports] = useState([
-    {
-      name: "shivank",
-      date: "2023-10-06",
-      time: "23:46",
-      injuries: [
-        {
-          number: 1,
-          area: "head",
-          details: "",
-          x: 77,
-          y: 28,
-        },
-        {
-          number: 2,
-          area: "left hand",
-          details: "",
-          x: 22,
-          y: 136,
-        },
-        {
-          number: 3,
-          area: "right hand",
-          details: "",
-          x: 124,
-          y: 131,
-        },
-        {
-          number: 4,
-          area: "left leg",
-          details: "",
-          x: 63,
-          y: 211,
-        },
-        {
-          number: 5,
-          area: "right leg",
-          details: "",
-          x: 105,
-          y: 215,
-        },
-      ],
-    },
-    {
-      name: "kunwar",
-      date: "2023-10-06",
-      time: "23:46",
-      injuries: [
-        {
-          number: 1,
-          area: "head",
-          details: "",
-          x: 77,
-          y: 28,
-        },
-        {
-          number: 2,
-          area: "left hand",
-          details: "",
-          x: 22,
-          y: 136,
-        },
-        {
-          number: 3,
-          area: "right hand",
-          details: "",
-          x: 124,
-          y: 131,
-        },
-        {
-          number: 4,
-          area: "left leg",
-          details: "",
-          x: 63,
-          y: 211,
-        },
-        {
-          number: 5,
-          area: "right leg",
-          details: "",
-          x: 105,
-          y: 215,
-        },
-      ],
-    },
+    
   ]);
+  const { getAccessTokenSilently } = useAuth0();
 
-  //   useEffect(() => {
-  //     axios
-  //       .get("reports.json")
-  //       .then((response) => {
-  //         setReports(...reports,response.data);
-  //       })
-  //       .catch((error) => {
-  //         console.error("Error fetching reports", error);
-  //       });
-  //   }, []);
+  useEffect(()=>{
+    const fetchReports = async () => {
+      try {
+        const token = await getAccessTokenSilently();
+        const response = await axios.get("http://localhost:5000/api/report", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        setReports(response.data);
+      } catch (error) {
+        console.error("Error fetching reports", error);
+      }
+    };
+    fetchReports();
+  },[])
+    
+  
+    
   
 
 
@@ -111,6 +39,7 @@ const ReportsPage = () => {
       <Link to="/submit-report">
         <button>Add Report</button>
       </Link>
+      
       <table>
         <thead>
           <tr>
@@ -119,20 +48,17 @@ const ReportsPage = () => {
             <th>Description</th>
           </tr>
         </thead>
+        
+        
         <tbody>
-          {reports.map((report, index) => (
+          {reports&&reports.map((report, index) => (
             <tr key={index}>
               <td>{report.name}</td>
               <td>{report.date}</td>
+              {console.log(report.injuries)}
               <td>
-                <Link
-                  to={{
-                    pathname: "/report-card",
-                    state: { Name:report.name,Date:report.date,Time:report.time,injuries: report.injuries },
-                  }}
-                >
-                  <button onClick={()=>console.log(report)}> more </button>
-                </Link>
+                  <button onClick={()=>{navigate('/report-card', {state: {name:report.name, date: report.date,time: report.time, injuries: report.injuries}})}}> more </button>
+                
               </td>
             </tr>
           ))}

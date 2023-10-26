@@ -26,9 +26,9 @@ function App() {
         </Routes>
       </Router>
       )}
-      <pre style={{textAlign: 'start'}}>
+      {/* <pre style={{textAlign: 'start'}}>
         {JSON.stringify(user,null,2)};
-      </pre>
+      </pre> */}
     </main>
   )
 }
