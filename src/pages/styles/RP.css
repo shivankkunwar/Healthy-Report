@@ -1,0 +1,49 @@
+.title-page{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 2rem  4rem;
+}
+
+.table-container{
+    
+    text-align: center;
+    overflow-y: auto;
+    margin: auto;
+    width: 90vw;
+    max-height: 50vh;
+    border: 0.5rem solid #009688;
+    border-radius: 20px;
+}
+table{
+   
+    text-align: center;
+    width: 100%;
+    
+    
+    
+}
+table thead {
+    padding: 7px;
+    height: 7vh;
+
+}
+table thead tr {
+    position: sticky;
+  top: 0;
+  background: white;
+}
+table tbody{
+    overflow: scroll;
+}
+table tr {
+    height: 5vh;
+}
+
+#add-report-button{
+    
+    background-color: #FFA500;
+    font-size: 1rem;
+    border-radius: 10px;
+    padding: 1rem;
+}
