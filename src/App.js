@@ -34,10 +34,10 @@ function App() {
       {isAuthenticated && (
         <Router>
           <Routes>
-            <Route path="/" exact element={<ReportsPage />} />
-            <Route path="/reports" exact element={<ReportsPage />} />
-            <Route path="/submit-report" exact element={<ReportFormPage />} />
-            <Route path="/report-card" exact element={<ReportCard />} />
+            <Route key="home"path="/" exact element={<ReportsPage />} />
+            
+            <Route key="submit-report" path="/submit-report" exact element={<ReportFormPage />} />
+            <Route key="report-card" path="/report-card" exact element={<ReportCard />} />
           </Routes>
         </Router>
       )}

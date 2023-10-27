@@ -1,9 +1,51 @@
 /*  */
+.container{
+   text-align: center;
+}
+.inner-container{
+    display: flex;
+    padding: 0 10rem;
+}
+.injury-list {
+    display: flex;
+    flex-direction: column;
+}
+.injury-list li .injury-flex {
 
+    display: flex;
+    width: 50vw;
+    margin: 1rem;
+    height: 5vh;
+    justify-content: space-between;
+}
+.injury-list li .injury-flex input {
+    width: 30vw;
+}
 .image-map {
     position: relative;
+}
+.image-map{
+    max-width: 100%;
+    height: auto;
 }
 .canvas {
     position:absolute;
     pointer-events: none;
+}
+.img{
+    position: absolute;
+}
+@media (max-width: 800px) {
+    .inner-container{
+        display: block;
+        padding: 0 ;
+    }
+    .injury-list li .injury-flex {
+
+        width: 86vw;
+        height: 5vh;
+        flex-direction: row;
+        margin: 0;
+       
+    }
 }

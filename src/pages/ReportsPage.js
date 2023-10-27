@@ -9,14 +9,21 @@ const ReportsPage = () => {
   const [reports, setReports] = useState([]);
   const { getAccessTokenSilently } = useAuth0();
 
+  const [sortColumn , setSortColumn]= useState("");
+  const [sortOrder, setSortOrder] = useState("asc");
+
   useEffect(() => {
     const fetchReports = async () => {
       try {
         const token = await getAccessTokenSilently();
-        const response = await axios.get("http://localhost:5000/api/report", {
+        const response = await axios.get("https://health-report-api.onrender.com/api/report", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
+          params: {
+            sortColumn,
+            sortOrder,
+          }
         });
         setReports(response.data);
       } catch (error) {
@@ -24,7 +31,17 @@ const ReportsPage = () => {
       }
     };
     fetchReports();
-  }, []);
+  }, [sortOrder]);
+  const handleSort = (column) => {
+    if (sortColumn === column) {
+      
+      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+    } else {
+     
+      setSortColumn(column);
+      setSortOrder("asc");
+    }
+  };
 
   return (
     <div className="container-top">
@@ -39,14 +56,20 @@ const ReportsPage = () => {
       </div>
       <div className="table-container">
         <table>
-          <thead>
-            <tr>
-              <th>Reporter</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Description</th>
-            </tr>
-          </thead>
+        <thead>
+  <tr>
+    <th onClick={() => handleSort("name")}>
+      Reporter {sortColumn === "name" && <span>{sortOrder === "asc" ? "▲" : "▼"}</span>}
+    </th>
+    <th onClick={() => handleSort("date")}>
+      Date {sortColumn === "date" && <span>{sortOrder === "asc" ? "▲" : "▼"}</span>}
+    </th>
+    <th onClick={() => handleSort("time")}>
+      Time {sortColumn === "time" && <span>{sortOrder === "asc" ? "▲" : "▼"}</span>}
+    </th>
+    <th>Description</th>
+  </tr>
+</thead>
 
           <tbody>
             {reports &&
@@ -55,7 +78,7 @@ const ReportsPage = () => {
                   <td>{report.name}</td>
                   <td>{new Date(report.date).toLocaleDateString()}</td>
                   <td>{report.time}</td>
-                  {console.log(report.injuries)}
+                  
                   <td>
                     <button
                       onClick={() => {

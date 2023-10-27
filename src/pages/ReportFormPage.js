@@ -3,6 +3,7 @@ import axios from "axios";
 import BodyMapComponent from "../components/BodyMapComponent";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
+import "./styles/RFP.css";
 const ReportFormPage = () => {
   const [reporterName, setReporterName] = useState("");
   const [injuryDate, setInjuryDate] = useState("");
@@ -10,30 +11,23 @@ const ReportFormPage = () => {
 
   const [InjuryList, setInjuryList] = useState([]);
 
-  const { getAccessTokenSilently } = useAuth0();
+  const {isAuthenticated, getAccessTokenSilently } = useAuth0();
   const navigate = useNavigate();
+  
   const updateInjuries = (vals) => {
     console.log("Updating injuries in BodyMapComponent:", vals);
     setInjuryList(vals);
   };
-  async function testApp() {
-    try {
-      const token = await getAccessTokenSilently();
-      
-      const response = await axios.get("http://localhost:5000/testing", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(response.data);
-    } catch (error) {
-      console.log(error.message);
-    }
-  }
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     console.log("Form Submitted");
+    if (!isAuthenticated) {
+      // Handle case where user is not authenticated
+      navigate("/"); // Replace with your desired route for non-authenticated users
+      return;
+    }
 
     const reportData = {
       name: reporterName,
@@ -45,7 +39,7 @@ const ReportFormPage = () => {
 
     axios
       .post(
-        "http://localhost:5000/api/report",
+        "https://health-report-api.onrender.com/api/report",
 
         reportData,
         {
@@ -65,46 +59,47 @@ const ReportFormPage = () => {
   };
 
   return (
-    <div>
-      
+    <div className="form-container">
       <h1>Report Form</h1>
       <form onSubmit={handleSubmit}>
-        <label>
-          Reporter's Name:
-          <input
-            type="text"
-            value={reporterName}
-            onChange={(event) => setReporterName(event.target.value)}
-          />
-        </label>
+        <div className="top-form ">
+          <label>
+            Reporter's Name:
+            <input
+              type="text"
+              value={reporterName}
+              onChange={(event) => setReporterName(event.target.value)}
+            />
+          </label>
+          <br />
+          <label>
+            Date of Injury:
+            <input
+              type="date"
+              value={injuryDate}
+              onChange={(event) => setInjuryDate(event.target.value)}
+            />
+          </label>
+          <br />
+          <label>
+            Time of Injury:
+            <input
+              type="time"
+              value={injuryTime}
+              onChange={(event) => setInjuryTime(event.target.value)}
+            />
+          </label>
+        </div>
+
         <br />
         <label>
-          Date of Injury:
-          <input
-            type="date"
-            value={injuryDate}
-            onChange={(event) => setInjuryDate(event.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Time of Injury:
-          <input
-            type="time"
-            value={injuryTime}
-            onChange={(event) => setInjuryTime(event.target.value)}
-          />
-        </label>
-        <br />
-        <label>
-          Body Map Selection:
           <BodyMapComponent updateInjuries={updateInjuries} />
         </label>
         <br />
-        <button type="submit">Submit</button>
-        <button type="button" onClick={testApp}>
-          Testing button
-        </button>
+        <div className="submit-button">
+          <button type="submit">Submit</button>
+          <button type="back" onClick={()=>navigate("/")} >Cancel</button>
+        </div>
       </form>
     </div>
   );

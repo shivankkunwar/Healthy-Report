@@ -5,3 +5,44 @@
     position:absolute;
     pointer-events: none;
 }
+
+.content-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        margin-left: 5rem;
+}
+.description {
+    display: flex;
+    justify-content: center;
+
+}
+
+.injury-about label{
+    font-size: 1.5rem;
+}
+.injury-about h3{
+    margin: 1rem;
+    font-size: 1rem;
+}
+.button-back{
+    width: 10vw;
+    height: 5vh;
+    margin: 0.75rem;
+    margin-left: 5rem;
+    color: white;
+    font-size: 1.25rem;
+    border-radius: 10px;
+    background-color: #009688;
+}
+@media (max-width: 800px) {
+    .description{
+        display: block;
+        text-align: center;
+
+    }   
+    .button-back{
+        width: 40vw;
+    } 
+}
