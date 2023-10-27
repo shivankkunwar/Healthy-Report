@@ -1,70 +1,72 @@
-# Getting Started with Create React App
+# Health Report Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+The Health Report Application is a web-based platform that allows users to report injuries and health-related incidents. It consists of two main components: a front-end built with React and a back-end built with Express.js and MongoDB. Users can submit injury reports, view their submitted reports, and sort reports based on various criteria. The application also utilizes Auth0 for user authentication.
 
-In the project directory, you can run:
+## Backend Repository [here](https://github.com/shivankkunwar/Healthy-Report-API-Backend)
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- Node.js and npm installed.
+- MongoDB database setup.
+- Auth0 account for authentication.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+1. Clone the repository.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Install dependencies for the frontend and backend.
 
-### `npm run build`
+3. Set up configuration files:
+   - Create a `.env` file in the `frontend` and `backend` directories to store environment-specific variables, including MongoDB connection URI and Auth0 credentials.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Start the frontend and backend servers.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. Access the application in your browser at `http://localhost:3000`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
 
-### `npm run eject`
+- Visit the Reports Page to view existing reports and sort them.
+- Access the Report Form Page to submit new health reports with injury details.
+- Use the Body Map Component to mark injuries on a body diagram.
+- Reports are associated with the authenticated user's email address.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## API Endpoints
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- `POST /api/report`: Submit a new health report.
+- `GET /api/report`: Retrieve user-specific reports with sorting options.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Dependencies
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Frontend:
+  - React
+  - axios
+  - react-router-dom
+  - Auth0 React SDK
 
-## Learn More
+- Backend:
+  - Express.js
+  - MongoDB
+  - Auth0 Management API
+  - axios
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Contributing
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Contributions to this project are welcome. Please follow these steps:
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them.
+4. Push your changes to your fork.
+5. Submit a pull request to the main repository.
 
-### Code Splitting
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-### Analyzing the Bundle Size
+## Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [React](https://reactjs.org/)
+- [Express.js](https://expressjs.com/)
+- [MongoDB](https://www.mongodb.com/)
+- [Auth0](https://auth0.com/)
