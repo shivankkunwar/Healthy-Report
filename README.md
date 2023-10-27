@@ -6,6 +6,9 @@ The Health Report Application is a web-based platform that allows users to repor
 
 ## Backend Repository [here](https://github.com/shivankkunwar/Healthy-Report-API-Backend)
 
+
+
+![](https://github.com/shivankkunwar/Healthy-Report-UI/blob/main/report.gif)
 ## Prerequisites
 
 - Node.js and npm installed.
