@@ -118,9 +118,7 @@ function BodyMap({ updateInjuries }) {
     }
   }, [circles]);
 
-  const makeFinalUpdate = () => {
-    console.log("updating the curr injury list");
-  };
+  
 
   useEffect(() => {
     updateInjuries(currInjuries);

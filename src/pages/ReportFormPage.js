@@ -15,7 +15,7 @@ const ReportFormPage = () => {
   const navigate = useNavigate();
   
   const updateInjuries = (vals) => {
-    console.log("Updating injuries in BodyMapComponent:", vals);
+    
     setInjuryList(vals);
   };
   
@@ -49,7 +49,7 @@ const ReportFormPage = () => {
         }
       )
       .then((res) => {
-        console.log(res.data);
+        console.log("posted");
       })
       .catch((error) => {
         console.error(error);

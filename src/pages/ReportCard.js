@@ -4,7 +4,7 @@ import "./styles/RC.css";
 const ReportCard = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log(location);
+ 
 
   const { name, date, time, injuries } = location.state;
 
